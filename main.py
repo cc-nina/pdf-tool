@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import pypdf
 from pypdf import PdfWriter
 
 merger = PdfWriter()
