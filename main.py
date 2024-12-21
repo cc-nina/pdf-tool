@@ -1,14 +1,12 @@
 import streamlit as st
-import pandas as pd
-import pypdf
 from pypdf import PdfWriter
 
 merger = PdfWriter()
 
-st.write("""
-# Combine your pdfs.""")
-st.write("""
-Name for your combined pdf:""")
+st.write("
+# Combine your pdfs.")
+st.write("
+Name for your combined pdf:")
 name = st.text_input(label='name of pdf', 
                      value="Name your file here", 
                      max_chars=255, 
