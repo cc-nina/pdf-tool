@@ -1,6 +1,12 @@
 import streamlit as st
 import pandas as pd
 from pypdf import PdfWriter
+import os
+
+def removefromdir():
+    for i in os.listdir('/'):
+        if i.endswith('.pdf'):
+            os.remove(i)
 
 merger = PdfWriter()
 
@@ -13,23 +19,27 @@ uploaded_files = st.file_uploader(label="combine pdfs", type=['pdf'], accept_mul
 st.write("""
 Name of your combined pdf:""")
 name = st.text_input(label='name of pdf', 
-                     value="combined", 
+                     value="bobb", 
                      max_chars=255, 
                      type="default", 
-                     placeholder='combined', 
+                     placeholder="combined", 
                      disabled=False, 
                      label_visibility="collapsed")
-
 name = name+".pdf"
+file_name = name
+
 for file in uploaded_files:
     merger.append(file)
     
 merger.write(name)
 
+with open(name, "rb") as pdf_file:
+    combinedfile = pdf_file.read()
+
 st.download_button(label='download combined pdf', 
-                   data=name, 
-                   file_name=name, 
-                   mime=None, 
+                   data=combinedfile, 
+                   file_name=file_name,
+                   on_click=removefromdir(),
                    type="secondary", 
                    icon=":material/download:", 
                    disabled=False, 
