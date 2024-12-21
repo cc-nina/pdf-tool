@@ -1,12 +1,6 @@
 import streamlit as st
 import pandas as pd
 from pypdf import PdfWriter
-import os
-
-def removefromdir():
-    for i in os.listdir('/'):
-        if i.endswith('.pdf'):
-            os.remove(i)
 
 merger = PdfWriter()
 
@@ -39,7 +33,6 @@ with open(name, "rb") as pdf_file:
 st.download_button(label='download combined pdf', 
                    data=combinedfile, 
                    file_name=file_name,
-                   on_click=removefromdir(),
                    type="secondary", 
                    icon=":material/download:", 
                    disabled=False, 
