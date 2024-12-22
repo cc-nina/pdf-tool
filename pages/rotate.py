@@ -68,13 +68,19 @@ if uploaded_file:
     
     reader = PdfReader(uploaded_file)
     writer = PdfWriter()
-    
-    for i in range((first - 1), last):
-        writer.add_page(reader.pages[i])
-        writer.pages[i].rotate(amnt)
+
+    if first == last:
+        writer.add_page(reader.pages[(first - 1)])
+        # index error here
+        writer.pages[(first - 1)].rotate(amnt)
+    else:
+        for i in range((first - 1), last):
+            writer.add_page(reader.pages[i])
+            writer.pages[i].rotate(amnt)
         
-    for i in range(last - 1, total):
-        writer.add_page(reader.pages[i])
+    if last != total:
+        for i in range(last, total):
+            writer.add_page(reader.pages[i])
     
     with open(name, "wb") as fp:
         writer.write(fp)
