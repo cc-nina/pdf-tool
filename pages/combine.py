@@ -25,18 +25,17 @@ uploaded_files = st.file_uploader(label="combine pdfs",
                                   key=None, disabled=False, 
                                   label_visibility="collapsed")
 
-name = name+".pdf"
-file_name = name
-
-for file in uploaded_files:
-    merger.append(file)
-    
-merger.write(name)
-
-with open(name, "rb") as pdf_file:
-    combinedfile = pdf_file.read()
-
 if uploaded_files:
+    name = name+".pdf"
+    file_name = name
+
+    for file in uploaded_files:
+        merger.append(file)
+        
+    merger.write(name)
+
+    with open(name, "rb") as pdf_file:
+        combinedfile = pdf_file.read()
     st.download_button(label='Download combined pdf', 
                    data=combinedfile, 
                    file_name=file_name,

@@ -77,20 +77,6 @@ if uploaded_file:
         else:
             writer.add_page(reader.pages[i])
 
-
-    #if first == last:
-  #      writer.add_page(reader.pages[(first - 1)])
-        # index error here
-    #    writer.pages[0].rotate(amnt)
- #   else:
-    #    for i in range((first - 1), last):
-    #        writer.add_page(reader.pages[i])
-    #        writer.pages[i].rotate(amnt)
-        
-    #if last != total:
-#for i in range(last, total):
-    #        writer.add_page(reader.pages[i])
-    #need to add in pages that aren't specified
     with open(name, "wb") as fp:
         writer.write(fp)
     

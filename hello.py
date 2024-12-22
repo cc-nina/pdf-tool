@@ -7,4 +7,4 @@ st.set_page_config(
 
 st.write("# Welcome to PDF Tools! 👋")
 
-st.sidebar.success("Select a demo above.")
+st.sidebar.success("Select an action above.")
