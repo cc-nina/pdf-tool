@@ -92,5 +92,5 @@ if uploaded_file:
                    use_container_width=False)
     writer.close()
 else:
-    st.write("Upload your files")
+    st.write("Upload a file to get started.")
 

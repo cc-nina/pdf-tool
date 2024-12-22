@@ -43,7 +43,7 @@ if uploaded_files:
                    icon=":material/download:", 
                    disabled=False, 
                    use_container_width=False)
+    merger.close()
 else:
-    st.write("Upload your files")
+    st.write("Upload your files to get started.")
 
-merger.close()
