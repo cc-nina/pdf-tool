@@ -1,15 +1,14 @@
 import streamlit as st
-from pypdf import PdfWriter
+from pypdf import PdfReader, PdfWriter
+from PyPDF2 import PdfReader, PdfWriter
 
 st.set_page_config(
-    page_title="Combine",
+    page_title="Compress",
     page_icon="👋",
 )
 
-merger = PdfWriter()
-
 st.write("""
-# Combine your pdfs.""")
+# Compress your pdf.""")
 st.write("""
 Name for your combined pdf:""")
 name = st.text_input(label='name of pdf', 
@@ -19,32 +18,37 @@ name = st.text_input(label='name of pdf',
                      placeholder="combined", 
                      disabled=False, 
                      label_visibility="collapsed")
-uploaded_files = st.file_uploader(label="combine pdfs", 
+uploaded_file = st.file_uploader(label="compress pdfs", 
                                   type=['pdf'], 
-                                  accept_multiple_files=True, 
+                                  accept_multiple_files=False, 
                                   key=None, 
                                   disabled=False, 
                                   label_visibility="collapsed")
 
-if uploaded_files:
+if uploaded_file:
     name = name+".pdf"
     file_name = name
 
-    for file in uploaded_files:
-        merger.append(file)
-        
-    merger.write(name)
+    reader = PdfReader(uploaded_file)
+    writer = PdfWriter()
+
+    for page in reader.pages:
+        page.compress_content_streams()  # This is CPU intensive!
+        writer.add_page(page)
+
+    with open(name, "wb") as f:
+        writer.write(f)
 
     with open(name, "rb") as pdf_file:
-        combinedfile = pdf_file.read()
-    st.download_button(label='Download combined pdf', 
-                   data=combinedfile, 
+        compressedfile = pdf_file.read()
+
+    st.download_button(label='Download compressed pdf', 
+                   data=compressedfile, 
                    file_name=file_name,
                    type="secondary", 
                    icon=":material/download:", 
                    disabled=False, 
                    use_container_width=False)
-    merger.close()
 else:
     st.write("Upload your files to get started.")
 
