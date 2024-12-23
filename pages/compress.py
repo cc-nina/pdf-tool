@@ -39,8 +39,8 @@ if uploaded_file:
     with open(name, "wb") as f:
         writer.write(f)
 
-    with open(name, "rb") as pdf_file:
-        compressedfile = pdf_file.read()
+    with open(name, "rb") as f:
+        compressedfile = f.read()
 
     st.download_button(label='Download compressed pdf', 
                    data=compressedfile, 

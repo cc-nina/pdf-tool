@@ -77,8 +77,8 @@ if uploaded_file:
     with open(name, "wb") as fp:
         writer.write(fp)
     
-    with open(name, "rb") as pdf_file:
-        rotatedfile = pdf_file.read()
+    with open(name, "rb") as f:
+        rotatedfile = f.read()
 
     st.download_button(label='Download rotated pdf', 
                    data=rotatedfile, 
