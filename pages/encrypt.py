@@ -20,7 +20,7 @@ name = st.text_input(label='name of pdf',
 st.write("""
 Password for your encrypted pdf:""")
 pw = st.text_input(label='password of pdf', 
-                     value="Name your file here", 
+                     value="Password", 
                      max_chars=255, 
                      type="default", 
                      placeholder="combined", 
@@ -48,7 +48,7 @@ if uploaded_file:
     with open(name, "rb") as f:
         encryptedfile = f.read()
     
-    st.download_button(label='Download combined pdf', 
+    st.download_button(label='Download encrypted pdf', 
                    data=encryptedfile, 
                    file_name=file_name,
                    type="secondary", 
