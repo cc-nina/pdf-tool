@@ -19,7 +19,7 @@ name = st.text_input(label='name of pdf',
                      disabled=False, 
                      label_visibility="collapsed")
 
-uploaded_file = st.file_uploader(label="combine pdfs", 
+uploaded_file = st.file_uploader(label="rotate pdfs", 
                                   type=['pdf'], 
                                   accept_multiple_files=False, 
                                   key=None, 

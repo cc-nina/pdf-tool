@@ -9,7 +9,7 @@ st.set_page_config(
 st.write("""
 # Decrypt your pdf.""")
 st.write("""
-Name for your encrypted pdf:""")
+Name for your decrypted pdf:""")
 name = st.text_input(label='name of pdf', 
                      value="Name your file here", 
                      max_chars=255, 
@@ -26,7 +26,7 @@ pw = st.text_input(label='password of pdf',
                      placeholder="combined", 
                      disabled=False, 
                      label_visibility="collapsed")
-uploaded_file = st.file_uploader(label="compress pdfs", 
+uploaded_file = st.file_uploader(label="decrypt pdfs", 
                                   type=['pdf'], 
                                   accept_multiple_files=False, 
                                   key=None, 
